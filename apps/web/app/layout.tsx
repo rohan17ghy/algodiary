@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { RecoilRoot } from "recoil";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -24,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <RecoilRoot>{children}</RecoilRoot>
       </body>
     </html>
   );
