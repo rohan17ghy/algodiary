@@ -1,6 +1,6 @@
 //import { Instrument } from "@/lib/";
 import { atom } from "recoil";
-import { Instrument } from "@/lib/types";
+import { Instrument } from "@algodiary/types";
 
 export const watchlistStocksAtom = atom<Instrument[]>({
   key: "watchlistStocks",
