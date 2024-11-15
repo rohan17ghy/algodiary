@@ -9,3 +9,8 @@ export const showLeaveConfirmDialogAtom = atom({
   key: "showLeaveConfirmDialog",
   default: false,
 });
+
+export const showDeleteConfirmAtom = atom({
+  key: "showDeleteConfirm",
+  default: false,
+});
