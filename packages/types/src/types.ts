@@ -22,3 +22,31 @@ export type Order = {
   price: number;
   status: "Executed" | "Pending" | "Cancelled";
 };
+
+export type Position = {
+  symbol: string;
+  quantity: number;
+  avgCost: number;
+  currentPrice: number;
+};
+
+export type Account = {
+  id: number;
+  name: string;
+  broker: string;
+  type: string;
+  balance: number;
+  profitLoss: number;
+  trades: number;
+  tradeHistory: {
+    id: string;
+    openDate: string;
+    symbol: string;
+    status: "Open" | "Closed";
+    closeDate: string;
+    entryPrice: number;
+    exitPrice: number | "-";
+    netPL: number;
+    netROI: number;
+  }[];
+};
