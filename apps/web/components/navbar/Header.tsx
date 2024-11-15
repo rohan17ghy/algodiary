@@ -27,7 +27,7 @@ import {
   activeTabAtom,
 } from "@algodiary/store";
 import { NavContent } from "@/components/navbar/NavContent";
-import type { Instrument } from "@/lib/types";
+import type { Instrument } from "@algodiary/types";
 
 const allInstruments: Instrument[] = [
   { symbol: "AAPL", name: "Apple Inc.", exchange: "NASDAQ", type: "Stocks" },
