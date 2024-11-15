@@ -104,3 +104,24 @@ export const sampleOrders: Order[] = [
     status: "Cancelled",
   },
 ];
+
+export const samplePositions = [
+  {
+    symbol: "AAPL",
+    quantity: 100,
+    avgCost: 145.5,
+    currentPrice: 150.25,
+  },
+  {
+    symbol: "MSFT",
+    quantity: 75,
+    avgCost: 300.0,
+    currentPrice: 305.75,
+  },
+  {
+    symbol: "AMZN",
+    quantity: 25,
+    avgCost: 3350.0,
+    currentPrice: 3380.5,
+  },
+];
