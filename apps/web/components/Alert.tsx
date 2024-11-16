@@ -24,7 +24,7 @@ import {
 import { useRecoilState } from "recoil";
 import { isFormDirtyAtom } from "@algodiary/store";
 
-export const Alert = () => {
+export default function Alert() {
   const [showLeaveConfirmDialog, setShowLeaveConfirmDialog] = useRecoilState(
     showLeaveConfirmDialogAtom
   );
@@ -106,4 +106,4 @@ export const Alert = () => {
       </AlertDialog>
     </>
   );
-};
+}

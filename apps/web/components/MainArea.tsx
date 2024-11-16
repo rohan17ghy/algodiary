@@ -102,16 +102,14 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import {
-  Accounts,
-  Dashboard,
-  Funds,
-  Header,
-  Orders,
-  Postions,
-  Trades,
-  Watchlist,
-} from "@/components";
+import Accounts from "@/components/Accounts";
+import Dashboard from "./Dashboard";
+import Funds from "./Funds";
+import Header from "./navbar/Header";
+import Orders from "./Orders";
+import Postions from "./Positions";
+import Trades from "./Trades";
+import Watchlist from "./Watchlist";
 import { useRecoilState } from "recoil";
 import {
   activeSectionAtom,
@@ -169,7 +167,7 @@ export const MainArea = () => {
           </Card>
         </div>
       )} */}
-      <Dashboard />
+      {activeSection === "dashboard" && <Dashboard />}
 
       {/* {activeSection === "watchlist" && (
         <Card>
@@ -559,7 +557,9 @@ export const MainArea = () => {
           </CardContent>
         </Card>
       )} */}
-      <Watchlist allInstruments={allInstruments} />
+      {activeSection === "watchlist" && (
+        <Watchlist allInstruments={allInstruments} />
+      )}
 
       {/* {activeSection === "orders" && (
         <Card>
@@ -634,7 +634,7 @@ export const MainArea = () => {
           </CardContent>
         </Card>
       )} */}
-      <Orders />
+      {activeSection === "orders" && <Orders />}
 
       {/* {activeSection === "positions" && (
         <Card>
@@ -708,7 +708,7 @@ export const MainArea = () => {
           </CardContent>
         </Card>
       )} */}
-      <Postions />
+      {activeSection === "positions" && <Postions />}
 
       {/* {activeSection === "funds" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -742,7 +742,7 @@ export const MainArea = () => {
           </Card>
         </div>
       )} */}
-      <Funds />
+      {activeSection === "funds" && <Funds />}
 
       {/* {activeSection === "trades" && (
         <div className="space-y-6">
@@ -1149,7 +1149,7 @@ export const MainArea = () => {
           )}
         </div>
       )} */}
-      <Trades />
+      {activeSection === "trades" && <Trades />}
 
       {/* {activeSection === "accounts" && (
         <div className="space-y-4">
@@ -1275,7 +1275,7 @@ export const MainArea = () => {
           )}
         </div>
       )} */}
-      <Accounts />
+      {activeSection === "trades" && <Accounts />}
     </main>
   );
 };

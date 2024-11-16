@@ -319,7 +319,7 @@ function AddAccount({
   );
 }
 
-export const Accounts = () => {
+export default function Accounts() {
   const [activeSection, setActiveSection] = useRecoilState(activeSectionAtom);
   const [showAddAccount, setShowAddAccount] =
     useRecoilState(showAddAccountAtom);
@@ -477,4 +477,4 @@ export const Accounts = () => {
       )}
     </div>
   );
-};
+}

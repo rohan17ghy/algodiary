@@ -48,11 +48,11 @@ import {
 } from "@/lib/data";
 import { useSearch } from "@/hooks/useSearch";
 
-export const Watchlist = ({
+export default function Watchlist({
   allInstruments,
 }: {
   allInstruments: Instrument[];
-}) => {
+}) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermAtom);
   const [activeTab, setActiveTab] = useRecoilState(activeTabAtom);
   const [searchResults, setSearchResults] = useRecoilState(searchResultsAtom);
@@ -475,4 +475,4 @@ export const Watchlist = ({
       </CardContent>
     </Card>
   );
-};
+}

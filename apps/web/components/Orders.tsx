@@ -28,7 +28,7 @@ import {
   sampleOrders,
 } from "@/lib/data";
 
-export const Orders = () => {
+export default function Orders() {
   return (
     <Card>
       <CardContent className="pt-6">
@@ -65,4 +65,4 @@ export const Orders = () => {
       </CardContent>
     </Card>
   );
-};
+}

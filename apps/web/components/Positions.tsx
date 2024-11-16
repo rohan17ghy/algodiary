@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { samplePositions } from "@/lib/data";
 
-export const Postions = () => {
+export default function Postions() {
   return (
     <Card>
       <CardContent className="pt-6">
@@ -63,4 +63,4 @@ export const Postions = () => {
       </CardContent>
     </Card>
   );
-};
+}

@@ -28,7 +28,7 @@ import {
   searchResultsAtom,
   activeTabAtom,
 } from "@algodiary/store";
-import { NavContent } from "@/components/navbar/NavContent";
+import NavContent from "@/components/navbar/NavContent";
 import type { Instrument } from "@algodiary/types";
 import { useSearch } from "@/hooks/useSearch";
 
@@ -92,11 +92,11 @@ const allInstruments: Instrument[] = [
   },
 ];
 
-export const Header = ({
+export default function Header({
   onNavItemClick,
 }: {
   onNavItemClick: (section: string) => void;
-}) => {
+}) {
   const [darkMode, setDarkMode] = useRecoilState(darkModeAtom);
   const [showAddAccount, setShowAddAccount] =
     useRecoilState(showAddAccountAtom);
@@ -197,4 +197,4 @@ export const Header = ({
       </div>
     </header>
   );
-};
+}

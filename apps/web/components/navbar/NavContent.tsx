@@ -13,11 +13,11 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const NavContent = ({
+export default function NavContent({
   onNavItemClick,
 }: {
   onNavItemClick: (section: string) => void;
-}) => {
+}) {
   const activeSection = useRecoilValue(activeSectionAtom);
 
   return (
@@ -45,4 +45,4 @@ export const NavContent = ({
       ))}
     </nav>
   );
-};
+}

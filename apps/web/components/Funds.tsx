@@ -11,7 +11,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 
-export const Funds = () => {
+export default function Funds() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <Card>
@@ -44,4 +44,4 @@ export const Funds = () => {
       </Card>
     </div>
   );
-};
+}

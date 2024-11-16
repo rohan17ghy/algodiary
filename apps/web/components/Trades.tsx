@@ -49,7 +49,7 @@ import {
 } from "@algodiary/store";
 import type { Account } from "@algodiary/types";
 
-export const Trades = () => {
+export default function Trades() {
   const [showImportTrades, setShowImportTrades] =
     useRecoilState(showImportTradesAtom);
   const [accounts, setAccounts] = useRecoilState(accountsAtom);
@@ -510,7 +510,7 @@ export const Trades = () => {
       )}
     </div>
   );
-};
+}
 
 function ImportPastTrades({
   accounts,

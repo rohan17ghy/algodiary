@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { RecoilRoot } from "recoil";
+import { RecoilContextProvider } from "@/components/RecoilContextProvider";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <RecoilRoot>{children}</RecoilRoot>
+        <RecoilContextProvider>{children}</RecoilContextProvider>
       </body>
     </html>
   );
