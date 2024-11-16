@@ -1,3 +1,5 @@
+"use client";
+
 import { useRecoilValue } from "recoil";
 import { activeSectionAtom } from "@algodiary/store";
 import {

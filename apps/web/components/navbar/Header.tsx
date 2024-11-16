@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useCallback } from "react";
 import { Bell, Menu, Moon, Search, Sun, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -28,6 +30,7 @@ import {
 } from "@algodiary/store";
 import { NavContent } from "@/components/navbar/NavContent";
 import type { Instrument } from "@algodiary/types";
+import { useSearch } from "@/hooks/useSearch";
 
 const allInstruments: Instrument[] = [
   { symbol: "AAPL", name: "Apple Inc.", exchange: "NASDAQ", type: "Stocks" },
@@ -119,20 +122,20 @@ export const Header = ({
     setShowImportTrades(false);
   };
 
-  const handleSearch = useCallback(
-    debounce((term) => {
-      setSearchTerm(term);
-      const filteredResults = allInstruments.filter(
-        (instrument) =>
-          (activeTab === "all" ||
-            instrument.type?.toLowerCase() === activeTab) &&
-          (instrument.symbol.toLowerCase().includes(term.toLowerCase()) ||
-            instrument.name.toLowerCase().includes(term.toLowerCase()))
-      );
-      setSearchResults(filteredResults);
-    }, 300),
-    [activeTab]
-  );
+  // const handleSearch = useCallback(
+  //   debounce((term) => {
+  //     setSearchTerm(term);
+  //     const filteredResults = allInstruments.filter(
+  //       (instrument) =>
+  //         (activeTab === "all" ||
+  //           instrument.type?.toLowerCase() === activeTab) &&
+  //         (instrument.symbol.toLowerCase().includes(term.toLowerCase()) ||
+  //           instrument.name.toLowerCase().includes(term.toLowerCase()))
+  //     );
+  //     setSearchResults(filteredResults);
+  //   }, 300),
+  //   [activeTab]
+  // );
 
   return (
     <header className="flex items-center justify-between h-16 px-4 border-b">
@@ -161,7 +164,7 @@ export const Header = ({
             type="search"
             placeholder="Search..."
             className="pl-8 w-[200px] md:w-[300px]"
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => useSearch(e.target.value)}
           />
         </div>
         <Button variant="ghost" size="icon" onClick={toggleDarkMode}>

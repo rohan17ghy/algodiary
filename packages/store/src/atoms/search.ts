@@ -1,4 +1,4 @@
-import { Instrument } from "./../../../../apps/web/lib/types";
+import { Instrument } from "@algodiary/types";
 import { atom } from "recoil";
 
 export const searchTermAtom = atom({

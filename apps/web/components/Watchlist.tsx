@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useCallback } from "react";
 import { Plus, X, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,6 +46,7 @@ import {
   futureInstruments,
   optionInstruments,
 } from "@/lib/data";
+import { useSearch } from "@/hooks/useSearch";
 
 export const Watchlist = ({
   allInstruments,
@@ -56,20 +59,20 @@ export const Watchlist = ({
   const [watchlistStocks, setWatchlistStocks] =
     useRecoilState(watchlistStocksAtom);
 
-  const handleSearch = useCallback(
-    debounce((term) => {
-      setSearchTerm(term);
-      const filteredResults = allInstruments.filter(
-        (instrument) =>
-          (activeTab === "all" ||
-            instrument.type?.toLowerCase() === activeTab) &&
-          (instrument.symbol.toLowerCase().includes(term.toLowerCase()) ||
-            instrument.name.toLowerCase().includes(term.toLowerCase()))
-      );
-      setSearchResults(filteredResults);
-    }, 300),
-    [activeTab]
-  );
+  // const handleSearch = useCallback(
+  //   debounce((term) => {
+  //     setSearchTerm(term);
+  //     const filteredResults = allInstruments.filter(
+  //       (instrument) =>
+  //         (activeTab === "all" ||
+  //           instrument.type?.toLowerCase() === activeTab) &&
+  //         (instrument.symbol.toLowerCase().includes(term.toLowerCase()) ||
+  //           instrument.name.toLowerCase().includes(term.toLowerCase()))
+  //     );
+  //     setSearchResults(filteredResults);
+  //   }, 300),
+  //   [activeTab]
+  // );
 
   const toggleWatchlist = useCallback((instrument: Instrument) => {
     setWatchlistStocks((prev) => {
@@ -91,8 +94,8 @@ export const Watchlist = ({
   }, []);
 
   useEffect(() => {
-    handleSearch(searchTerm);
-  }, [activeTab, handleSearch, searchTerm]);
+    useSearch(searchTerm);
+  }, [activeTab, useSearch, searchTerm]);
 
   return (
     <Card>
@@ -112,7 +115,7 @@ export const Watchlist = ({
             <div className="p-4 pt-2">
               <Input
                 placeholder="Search all instruments..."
-                onChange={(e) => handleSearch(e.target.value)}
+                onChange={(e) => useSearch(e.target.value)}
                 className="bg-background text-foreground"
               />
             </div>

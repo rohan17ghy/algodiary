@@ -1,3 +1,5 @@
+"use client";
+
 import { NavContent } from "./navbar/NavContent";
 
 export const Sidebar = ({

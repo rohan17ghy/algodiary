@@ -97,3 +97,8 @@ export const accountToDeleteAtom = atom<number | null>({
   key: "accountToDelete",
   default: null,
 });
+
+export const editingAccountAtom = atom<number | null>({
+  key: "editingAtom",
+  default: null,
+});

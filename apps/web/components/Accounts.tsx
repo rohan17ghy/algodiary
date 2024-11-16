@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useCallback, useEffect, useMemo } from "react";
 import {
   Bell,
@@ -107,6 +109,7 @@ import {
   activeAccountIdAtom,
   activeSectionAtom,
   currentPageAtom,
+  editingAccountAtom,
   isFormDirtyAtom,
   showAddAccountAtom,
   showDeleteConfirmAtom,
@@ -320,7 +323,9 @@ export const Accounts = () => {
   const [activeSection, setActiveSection] = useRecoilState(activeSectionAtom);
   const [showAddAccount, setShowAddAccount] =
     useRecoilState(showAddAccountAtom);
-  const [editingAccount, setEditingAccount] = useState<number | null>(null);
+  const [editingAccount, setEditingAccount] = useRecoilState<number | null>(
+    editingAccountAtom
+  );
   const [accounts, setAccounts] = useRecoilState(accountsAtom);
   const [isFormDirty, setIsFormDirty] = useRecoilState(isFormDirtyAtom);
   const [activeAccountId, setActiveAccountId] =
