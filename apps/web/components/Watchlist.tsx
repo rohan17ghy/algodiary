@@ -59,21 +59,6 @@ export default function Watchlist({
   const [watchlistStocks, setWatchlistStocks] =
     useRecoilState(watchlistStocksAtom);
 
-  // const handleSearch = useCallback(
-  //   debounce((term) => {
-  //     setSearchTerm(term);
-  //     const filteredResults = allInstruments.filter(
-  //       (instrument) =>
-  //         (activeTab === "all" ||
-  //           instrument.type?.toLowerCase() === activeTab) &&
-  //         (instrument.symbol.toLowerCase().includes(term.toLowerCase()) ||
-  //           instrument.name.toLowerCase().includes(term.toLowerCase()))
-  //     );
-  //     setSearchResults(filteredResults);
-  //   }, 300),
-  //   [activeTab]
-  // );
-
   const toggleWatchlist = useCallback((instrument: Instrument) => {
     setWatchlistStocks((prev) => {
       const exists = prev.some((s) => s.symbol === instrument.symbol);
@@ -93,9 +78,24 @@ export default function Watchlist({
     });
   }, []);
 
+  const handleSearch = useCallback(
+    debounce((term) => {
+      setSearchTerm(term);
+      const filteredResults = allInstruments.filter(
+        (instrument) =>
+          (activeTab === "all" ||
+            instrument.type?.toLowerCase() === activeTab) &&
+          (instrument.symbol.toLowerCase().includes(term.toLowerCase()) ||
+            instrument.name.toLowerCase().includes(term.toLowerCase()))
+      );
+      setSearchResults(filteredResults);
+    }, 300),
+    [activeTab]
+  );
+
   useEffect(() => {
-    useSearch(searchTerm);
-  }, [activeTab, useSearch, searchTerm]);
+    handleSearch(searchTerm);
+  }, [activeTab, handleSearch, searchTerm]);
 
   return (
     <Card>
@@ -115,7 +115,7 @@ export default function Watchlist({
             <div className="p-4 pt-2">
               <Input
                 placeholder="Search all instruments..."
-                onChange={(e) => useSearch(e.target.value)}
+                onChange={(e) => handleSearch(e.target.value)}
                 className="bg-background text-foreground"
               />
             </div>
