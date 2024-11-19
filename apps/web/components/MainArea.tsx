@@ -1275,7 +1275,7 @@ export const MainArea = () => {
           )}
         </div>
       )} */}
-      {activeSection === "trades" && <Accounts />}
+      {activeSection === "accounts" && <Accounts />}
     </main>
   );
 };

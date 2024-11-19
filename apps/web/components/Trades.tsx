@@ -47,6 +47,7 @@ import {
   showImportTradesAtom,
   tradesPerPageAtom,
 } from "@algodiary/store";
+import ImportPastTrades from "./ImportPastTrades";
 import type { Account } from "@algodiary/types";
 
 export default function Trades() {
@@ -125,7 +126,7 @@ export default function Trades() {
       {showImportTrades ? (
         <ImportPastTrades
           accounts={accounts}
-          onImport={handleImportTrades}
+          // onImport={handleImportTrades}
           onCancel={handleCloseImportTrades}
         />
       ) : activeAccountId ? (
@@ -508,95 +509,6 @@ export default function Trades() {
           </CardContent>
         </Card>
       )}
-    </div>
-  );
-}
-
-function ImportPastTrades({
-  accounts,
-  onImport,
-  onCancel,
-}: {
-  accounts: Account[];
-  onImport: () => void;
-  onCancel: () => void;
-}) {
-  const [selectedAccount, setSelectedAccount] = useState("");
-  const [file, setFile] = useState(null);
-
-  const handleAccountChange = (value: string) => {
-    setSelectedAccount(value);
-  };
-
-  const handleFileChange = (e: any) => {
-    setFile(e.target.files[0]);
-  };
-
-  const handleImport = () => {
-    if (selectedAccount && file) {
-      // Here you would implement the actual import logic
-      console.log(`Importing file for account: ${selectedAccount}`);
-      onImport();
-    }
-  };
-
-  return (
-    <div className="space-y-4">
-      <div className="space-y-2">
-        <Label htmlFor="account">Select Account</Label>
-        <Select value={selectedAccount} onValueChange={handleAccountChange}>
-          <SelectTrigger id="account" className="w-full">
-            <SelectValue placeholder="Select an account" />
-          </SelectTrigger>
-          <SelectContent>
-            {accounts.map((account) => (
-              <SelectItem key={account.id} value={account.id.toString()}>
-                {account.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="file">Upload CSV File</Label>
-        <Input
-          id="file"
-          type="file"
-          accept=".csv"
-          onChange={handleFileChange}
-        />
-      </div>
-      <div className="flex justify-end space-x-4 mt-4">
-        <Button variant="outline" onClick={onCancel}>
-          Cancel
-        </Button>
-        <Button onClick={handleImport} disabled={!selectedAccount || !file}>
-          Import Trades
-        </Button>
-      </div>
-      <div className="mt-6 space-y-4">
-        <h4 className="font-semibold">Import Information:</h4>
-        <div className="flex items-center space-x-2 text-muted-foreground">
-          <Info className="h-5 w-5" />
-          <p>
-            Importing past trades helps you analyze your trading history and
-            performance.
-          </p>
-        </div>
-        <div className="space-y-2">
-          <h5 className="font-semibold">CSV File Format:</h5>
-          <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-            <li>Each row should represent a single trade</li>
-            <li>
-              Include columns for date, symbol, entry price, exit price,
-              quantity, etc.
-            </li>
-            <li>
-              Ensure the CSV file is properly formatted to avoid import errors
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
   );
 }
