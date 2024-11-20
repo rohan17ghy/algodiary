@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Info, Upload, FileText, X, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import type { Account } from "@algodiary/types";
+import { brokerInstructions } from "@/lib/data";
 
 // type Account = {
 //   id: number;
@@ -25,29 +26,8 @@ import type { Account } from "@algodiary/types";
 //   { id: 3, name: "Retirement Account", broker: "tdameritrade" },
 // ];
 
-const brokerInstructions = {
-  robinhood: [
-    "Log in to your Robinhood account",
-    "Go to Account > Statements & History",
-    "Click on Export",
-    "Download your trade history as a CSV file",
-  ],
-  etrade: [
-    "Log in to E*TRADE",
-    "Navigate to Accounts > Transactions",
-    "Click on Export Transactions",
-    "Select the date range",
-    "Download the CSV file",
-  ],
-  tdameritrade: [
-    "Access your TD Ameritrade account",
     "Go to My Account > History & Statements",
     "Click on Export History",
-    "Choose your date range",
-    "Download the CSV file",
-  ],
-};
-
 export default function ImportPastTrades({
   accounts,
   onCancel,

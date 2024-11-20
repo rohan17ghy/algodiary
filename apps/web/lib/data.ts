@@ -125,3 +125,26 @@ export const samplePositions = [
     currentPrice: 3380.5,
   },
 ];
+
+export const brokerInstructions = {
+  Zerodha: [
+    "Log in to your Robinhood account",
+    "Go to Account > Statements & History",
+    "Click on Export",
+    "Download your trade history as a CSV file",
+  ],
+  Fyers: [
+    "Log in to E*TRADE",
+    "Navigate to Accounts > Transactions",
+    "Click on Export Transactions",
+    "Select the date range",
+    "Download the CSV file",
+  ],
+  Dhan: [
+    "Access your TD Ameritrade account",
+    "Go to My Account > History & Statements",
+    "Click on Export History",
+    "Choose your date range",
+    "Download the CSV file",
+  ],
+};
