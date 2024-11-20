@@ -26,8 +26,6 @@ import { brokerInstructions } from "@/lib/data";
 //   { id: 3, name: "Retirement Account", broker: "tdameritrade" },
 // ];
 
-    "Go to My Account > History & Statements",
-    "Click on Export History",
 export default function ImportPastTrades({
   accounts,
   onCancel,
