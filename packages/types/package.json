@@ -2,5 +2,8 @@
   "name": "@algodiary/types",
   "version": "1.0.0",
   "main": "./src/index.ts",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
 }

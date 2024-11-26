@@ -4,6 +4,9 @@
 //   Futures,
 // }
 
+import { z } from "zod";
+import { OrderSchema, TradeSchema } from "./zodSchema";
+
 export type Instrument = {
   symbol: string;
   name: string;
@@ -14,14 +17,14 @@ export type Instrument = {
   type?: "Stocks" | "Futures" | "Options";
 };
 
-export type Order = {
-  id: string;
-  symbol: string;
-  type: "Buy" | "Sell";
-  quantity: number;
-  price: number;
-  status: "Executed" | "Pending" | "Cancelled";
-};
+// export type Order = {
+//   id: string;
+//   symbol: string;
+//   type: "Buy" | "Sell";
+//   quantity: number;
+//   price: number;
+//   status: "Executed" | "Pending" | "Cancelled";
+// };
 
 export type Position = {
   symbol: string;
@@ -50,3 +53,6 @@ export type Account = {
     netROI: number;
   }[];
 };
+
+export type Order = z.infer<typeof OrderSchema>;
+export type Trade = z.infer<typeof TradeSchema>;
