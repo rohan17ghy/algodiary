@@ -38,4 +38,6 @@ yarn-error.log*
 *.pem
 
 #lock
+package-lock.json
+*.log
 *.lock

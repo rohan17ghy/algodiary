@@ -1,25 +1,27 @@
 {
-  "extends": "@algodiary/typescript-config/nextjs.json",
-  "compilerOptions": {
-    "plugins": [
-      {
-        "name": "next"
-      }
+    "extends": "@algodiary/typescript-config/nextjs.json",
+    "compilerOptions": {
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "paths": {
+            "@/*": ["./*"],
+            "@/components/*": ["./components/*"],
+            "@/hooks/*": ["./hooks/*"],
+            "@/lib": ["./lib/*"]
+        },
+        "typeRoots": ["./@types", "./node_modules/@types"]
+    },
+    "include": [
+        "next-env.d.ts",
+        "next.config.mjs",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "tailwind.config.js",
+        "apps/**/*"
     ],
-    "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./components/*"],
-      "@/hooks/*": ["./hooks/*"],
-      "@/lib": ["./lib/*"]
-    }
-  },
-  "include": [
-    "next-env.d.ts",
-    "next.config.mjs",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "tailwind.config.js"
-  ],
-  "exclude": ["node_modules"]
+    "exclude": ["node_modules"]
 }
