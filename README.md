@@ -92,3 +92,5 @@ Learn more about the power of Turborepo:
 -Copy the `./node_modules/fyers-web-sdk-v3/HSM_Package/hslib.js` file from `fyers-web-sdk-v3` and replace it in the original `./node_modules/fyers-api-v3/HSM_Package/hslib.js`
 -In `hslib.js` replace this line `const WebSocket = window.WebSocket || window.MozWebSocket;` with `const WebSocket = require('ws');`
 -In `hslib.js` replace this line `module.exports = HSWebSocket` with `export {HSWebSocket};`
+-There is a `fyers-api-v3.zip` file which contains the right files which are supported in next project. We
+can replace this folder in `node_modules`

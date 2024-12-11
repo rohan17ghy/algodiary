@@ -6,7 +6,7 @@ export default function TradingPage() {
     //const router = useRouter();
 
     const handleOnClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        const response: any = await fetch("/api/fyers/login");
+        const response: any = await fetch("/api/fyers/login/generateURL");
         // if (response.code == "success") {
         //     router.push(response.url);
         // }

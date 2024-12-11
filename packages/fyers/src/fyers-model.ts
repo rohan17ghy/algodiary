@@ -7,7 +7,7 @@ export class FyersModel {
 
     private constructor() {}
 
-    public static getInstance(): FyersModel {
+    public static getInstance() {
         if (!FyersModel._instance) {
             FyersModel._instance = new FyersModel();
             FyersModel._fyersModel = new fyers.fyersModel();
@@ -23,7 +23,7 @@ export class FyersModel {
             );
         }
 
-        return FyersModel._instance;
+        return FyersModel._fyersModel;
     }
 
     public getBrokerLoginURL = (): URL => {

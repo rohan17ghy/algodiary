@@ -1,3 +1,4 @@
+import { InvalidResponse, ValidResponse } from "@/lib/response";
 import { FyersModel } from "@algodiary/fyers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -6,21 +7,13 @@ export async function GET(request: NextRequest) {
     try {
         const fyersModel = FyersModel.getInstance();
         console.log(`FyersModel: ${fyersModel}`);
-        url = fyersModel.getBrokerLoginURL(); //`${JSON.stringify(fyersAPI)}`;
+        url = fyersModel.generateAuthCode(); //`${JSON.stringify(fyersAPI)}`;
     } catch (err) {
-        return NextResponse.json({
-            code: "failed",
+        return InvalidResponse({
             message: "Error fetching the broker login url",
-            err: `${JSON.stringify(err)}`,
+            error: err,
         });
     }
 
-    return NextResponse.json(
-        {
-            code: "success",
-            message: "Broker login url generated",
-            url: url,
-        },
-        { status: 200 }
-    );
+    return ValidResponse({ message: "Broker login url generated", url });
 }
