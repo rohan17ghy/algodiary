@@ -81,16 +81,10 @@ Learn more about the power of Turborepo:
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
 
 ##Problem with `fyers-api-v3` library
--The Datasocket module of fyers is designed such that it doesn't work with NextJS.
-
-- We get a module not found error
+-The original `./HSM/datasocket.min.js` is obfuscated, need to deobfuscate
+-Have used `https://deobfuscate.io/` to deobfuscate
+-Have created a zip file after deobfuscate at `./fyers-api-v3.zip`
 
 ###Solution to resolve the `module not found` error with `fyers-api-v3`
 -To make it work need to make some changes to that file
--Install the `fyers-web-sdk-v3` separately in a different project. Can't use this package directly as it is meant for browser and not node, it is using window object
--Copy the `./node_modules/fyers-web-sdk-v3/HSM/datasocket.min.js` file from `fyers-web-sdk-v3` and replace it in the original `./node_modules/fyers-api-v3/HSM/datasocket.min.js`
--Copy the `./node_modules/fyers-web-sdk-v3/HSM_Package/hslib.js` file from `fyers-web-sdk-v3` and replace it in the original `./node_modules/fyers-api-v3/HSM_Package/hslib.js`
--In `hslib.js` replace this line `const WebSocket = window.WebSocket || window.MozWebSocket;` with `const WebSocket = require('ws');`
--In `hslib.js` replace this line `module.exports = HSWebSocket` with `export {HSWebSocket};`
--There is a `fyers-api-v3.zip` file which contains the right files which are supported in next project. We
-can replace this folder in `node_modules`
+-Extract the `./fyers-api-v3.zip` and copy under `./node_modules/fyers-api-v3`
