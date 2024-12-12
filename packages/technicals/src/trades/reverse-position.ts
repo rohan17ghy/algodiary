@@ -24,7 +24,7 @@ export async function reversePosition(
     const ltpSocket = LTPSocket.getInstance();
     ltpSocket.subscribeToSymbol(currSym);
     ltpSocket.addMessageHandler((message: any) => {
-        console.log(`Symbol: ${currSym.symbol}, LTP: ${message.ltp}`);
+        //console.log(`Symbol: ${currSym.symbol}, LTP: ${message.ltp}`);
     });
 
     ltpSocket.connect();

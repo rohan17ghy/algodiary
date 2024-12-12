@@ -10,7 +10,7 @@ import {
     OrderSchema,
     TimeframeSchema,
     TradeSchema,
-} from "./zodSchema";
+} from "./zod/technicalSchema";
 
 export type Symbol = {
     symbol: string;

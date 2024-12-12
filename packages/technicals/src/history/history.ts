@@ -1,9 +1,11 @@
+import { HistorySchema } from "@algodiary/types";
 import { FyersModel } from "@algodiary/fyers";
 import { Candle, Symbol, Timeframe } from "@algodiary/types";
 import {
     convertToEpoch,
     calculatePreviousInterval,
 } from "@algodiary/technicals";
+import { z } from "zod";
 
 export async function getLastClosedCandle(
     symbol: Symbol,
@@ -14,18 +16,22 @@ export async function getLastClosedCandle(
 
     const lastCloseInterval = calculatePreviousInterval(timeframe);
 
-    console.log(`From: ${lastCloseInterval}, To: ${now}`);
+    console.log(
+        `Fetching historic candles for ${symbol.symbol} from: ${lastCloseInterval} to: ${now}`
+    );
 
-    const history = await fyersModel.getHistory({
-        symbol: symbol.symbol,
-        resolution: timeframe,
-        date_format: "0",
-        range_from: convertToEpoch(lastCloseInterval),
-        range_to: convertToEpoch(now),
-        cont_flag: "1",
-    });
+    const history = HistorySchema.parse(
+        await fyersModel.getHistory({
+            symbol: symbol.symbol,
+            resolution: timeframe,
+            date_format: "0",
+            range_from: convertToEpoch(lastCloseInterval),
+            range_to: convertToEpoch(now),
+            cont_flag: "1",
+        })
+    );
 
-    const candles = history?.candles;
+    const candles = history.candles;
 
     if (candles.length < 2) {
         throw new Error(

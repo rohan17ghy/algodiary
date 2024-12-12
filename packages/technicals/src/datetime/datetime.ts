@@ -64,7 +64,11 @@ export function convertToLocalTime(epoch: number) {
     });
     return localTime;
 }
-
+/**
+ * Used to calculate the opening time of the previous candle depending on the timeframe.
+ * @param timeframe
+ * @returns date object
+ */
 export function calculatePreviousInterval(timeframe: number): Date {
     if (timeframe <= 0) {
         throw new Error("Timeframe must be greater than zero.");
