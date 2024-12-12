@@ -1,3 +1,4 @@
+import { Symbol } from "@algodiary/types";
 import { FyersDataSocket } from "./fyers-data-socket";
 
 export class LTPSocket {
@@ -6,9 +7,7 @@ export class LTPSocket {
 
     private static pendingSubscriptions: string[];
 
-    public constructor(access_token: string) {
-        return LTPSocket.getInstance(access_token);
-    }
+    private constructor() {}
 
     static init() {
         this.pendingSubscriptions = [];
@@ -23,14 +22,14 @@ export class LTPSocket {
         this.ltpSocket.on("close", () => {
             console.log("Fyers ltp socket closed");
         });
-        this.connect();
+        this.ltpSocket.autoreconnect(6);
     }
 
-    private static getInstance(access_token: string) {
+    static getInstance() {
         if (!LTPSocket._instance) {
-            this.ltpSocket = FyersDataSocket.getInstance(access_token);
+            this.ltpSocket = FyersDataSocket.getInstance();
             this.init();
-            this._instance = new LTPSocket(access_token);
+            this._instance = new LTPSocket();
             console.log(`LTP socket initialized`);
         }
         return LTPSocket._instance;
@@ -46,25 +45,26 @@ export class LTPSocket {
         }
     }
 
-    subscribeToSymbol(symbol: string) {
+    subscribeToSymbol(symbol: Symbol) {
         if (LTPSocket.ltpSocket.readyState === WebSocket.OPEN) {
-            LTPSocket.ltpSocket.subscribe([symbol]);
-            console.log(`subscribed to ltp for symbol ${symbol}`);
-            LTPSocket.ltpSocket.autoreconnect(6);
+            LTPSocket.ltpSocket.subscribe([symbol.symbol]);
+            console.log(`subscribed to ltp for symbol ${symbol.symbol}`);
         } else {
-            LTPSocket.pendingSubscriptions.push(symbol);
+            LTPSocket.pendingSubscriptions.push(symbol.symbol);
         }
     }
 
-    unsubscribeFromSymbol(symbol: string) {
-        LTPSocket.ltpSocket.unsubscribe([symbol]);
+    unsubscribeFromSymbol(symbol: Symbol) {
+        LTPSocket.ltpSocket.unsubscribe([symbol.symbol]);
 
         if (LTPSocket.ltpSocket.readyState === WebSocket.OPEN) {
-            LTPSocket.ltpSocket.unsubscribe([symbol]);
+            LTPSocket.ltpSocket.unsubscribe([symbol.symbol]);
         } else {
             // You might want to handle pending unsubscriptions similarly
             LTPSocket.pendingSubscriptions =
-                LTPSocket.pendingSubscriptions.filter((sym) => sym !== symbol);
+                LTPSocket.pendingSubscriptions.filter(
+                    (sym) => sym !== symbol.symbol
+                );
         }
     }
 
@@ -72,7 +72,7 @@ export class LTPSocket {
         LTPSocket.ltpSocket.on("message", messageHandler);
     }
 
-    static connect() {
+    connect() {
         LTPSocket.ltpSocket.connect();
     }
 }

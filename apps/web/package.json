@@ -43,6 +43,7 @@
     "devDependencies": {
         "@algodiary/eslint-config": "*",
         "@algodiary/typescript-config": "*",
+        "@algodiary/technicals": "*",
         "@types/lodash": "^4.17.13",
         "@types/node": "^20",
         "@types/react": "^18",

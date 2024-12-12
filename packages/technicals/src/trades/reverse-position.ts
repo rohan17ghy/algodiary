@@ -1,23 +1,31 @@
-// export function reversePostion(
-//     currPos: string,
-//     reversePos: string,
-//     brkLevel: number,
-//     brkFailLevel: string,
-//     timeframe: string
-// ) {
+import type { Symbol, Timeframe } from "@algodiary/types";
+import { MinuteEventEmitter } from "@algodiary/technicals";
+import { getLastClosedCandle } from "@algodiary/technicals";
+import { FyersModel, LTPSocket } from "@algodiary/fyers";
 
-//     const minuteEmitter = new MinuteEventEmitter(1);
-//     minuteEmitter.on("minuteEvent", async (date) => {
-//         for (const sub of this.subscribedAggrOptions) {
-//             const candles = await get1minAggrCandles(sub.aggrInp);
-//             if (candles) {
-//                 const lastClosedCandle = candles[candles.length - 2];
-//                 sub.lastTime = lastClosedCandle.time;
-//                 console.log(
-//                     `Date: ${date},  Candle: ${JSON.stringify(lastClosedCandle)}`
-//                 );
-//                 ws.send(JSON.stringify(lastClosedCandle));
-//             }
-//         }
-//     });
-// }
+export async function reversePosition(
+    currSym: Symbol,
+    reversePos: Symbol,
+    brkLevel: number,
+    brkFailLevel: number,
+    timeframe: Timeframe
+) {
+    const timeInNumber = timeframe;
+    const minuteEmitter = new MinuteEventEmitter(timeInNumber);
+    minuteEmitter.on("minuteEvent", async (date) => {
+        console.log(
+            `Recieved the minute event for ${timeInNumber}. Current time: ${Date.now}`
+        );
+
+        //Fetching the last closed candle
+        await getLastClosedCandle(currSym, timeframe);
+    });
+
+    const ltpSocket = LTPSocket.getInstance();
+    ltpSocket.subscribeToSymbol(currSym);
+    ltpSocket.addMessageHandler((message: any) => {
+        console.log(`Symbol: ${currSym.symbol}, LTP: ${message.ltp}`);
+    });
+
+    ltpSocket.connect();
+}

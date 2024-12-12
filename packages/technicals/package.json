@@ -1,12 +1,13 @@
 {
-  "name": "@algodiary/technicals",
-  "version": "1.0.0",
-  "main": "./src/index.ts",
-  "license": "MIT",
-  "dependencies": {
-    "@algodiary/types": "*"
-  },
-  "devDependencies": {
-    "typescript": "^5.7.2"
-  }
+    "name": "@algodiary/technicals",
+    "version": "1.0.0",
+    "main": "./src/index.ts",
+    "license": "MIT",
+    "dependencies": {
+        "@algodiary/types": "*",
+        "@algodiary/fyers": "*"
+    },
+    "devDependencies": {
+        "typescript": "^5.7.2"
+    }
 }

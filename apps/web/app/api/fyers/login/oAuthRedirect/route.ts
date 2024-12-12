@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
-import { FyersModel } from "@algodiary/fyers";
+import { FyersModel, LTPSocket } from "@algodiary/fyers";
 import { AuthenticationFailedResponse, ValidResponse } from "@/lib/response";
+import { json } from "stream/consumers";
 
 export async function GET(req: NextRequest) {
     try {
@@ -14,21 +15,14 @@ export async function GET(req: NextRequest) {
             const fyersModel = FyersModel.getInstance();
             //fyersModel.setAuthCode(auth_code);
             //console.log(fyersModel.getAuthCode());
-            fyersModel
-                .generate_access_token({
-                    secret_key: process.env.FYERS_SECRET_KEY,
-                    auth_code: auth_code,
-                })
-                .then((response: any) => {
-                    //setAccessToken(response.access_token);
-                    fyersModel.setAccessToken(response.access_token);
-                    console.log(`User authenticated successfully`);
-                })
-                .catch((error: any) => {
-                    console.log(
-                        `Error authenticating user: ${JSON.stringify(error)}`
-                    );
-                });
+            const response = await fyersModel.generate_access_token({
+                secret_key: process.env.FYERS_SECRET_KEY,
+                auth_code: auth_code,
+            });
+
+            process.env.FYERS_ACCESS_TOKEN = response.access_token;
+            fyersModel.setAccessToken(response.access_token);
+            console.log(`User authenticated successfully`);
 
             return ValidResponse({
                 message: "User authenticated successfully",
@@ -37,6 +31,6 @@ export async function GET(req: NextRequest) {
             return AuthenticationFailedResponse();
         }
     } catch (err: any) {
-        return AuthenticationFailedResponse({ err });
+        return AuthenticationFailedResponse({ err: `${JSON.stringify(err)}` });
     }
 }

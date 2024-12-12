@@ -5,16 +5,21 @@
 // }
 
 import { z } from "zod";
-import { OrderSchema, TradeSchema } from "./zodSchema";
+import {
+    CandleSchema,
+    OrderSchema,
+    TimeframeSchema,
+    TradeSchema,
+} from "./zodSchema";
 
-export type Instrument = {
-  symbol: string;
-  name: string;
-  exchange?: string;
-  price?: number;
-  change?: number;
-  category?: string;
-  type?: "Stocks" | "Futures" | "Options";
+export type Symbol = {
+    symbol: string;
+    name: string;
+    exchange?: string;
+    price?: number;
+    change?: number;
+    category?: string;
+    type?: "Stocks" | "Futures" | "Options";
 };
 
 // export type Order = {
@@ -27,32 +32,34 @@ export type Instrument = {
 // };
 
 export type Position = {
-  symbol: string;
-  quantity: number;
-  avgCost: number;
-  currentPrice: number;
+    symbol: string;
+    quantity: number;
+    avgCost: number;
+    currentPrice: number;
 };
 
 export type Account = {
-  id: number;
-  name: string;
-  broker: string;
-  type: string;
-  balance: number;
-  profitLoss: number;
-  trades: number;
-  tradeHistory: {
-    id: string;
-    openDate: string;
-    symbol: string;
-    status: "Open" | "Closed";
-    closeDate: string;
-    entryPrice: number;
-    exitPrice: number | "-";
-    netPL: number;
-    netROI: number;
-  }[];
+    id: number;
+    name: string;
+    broker: string;
+    type: string;
+    balance: number;
+    profitLoss: number;
+    trades: number;
+    tradeHistory: {
+        id: string;
+        openDate: string;
+        symbol: string;
+        status: "Open" | "Closed";
+        closeDate: string;
+        entryPrice: number;
+        exitPrice: number | "-";
+        netPL: number;
+        netROI: number;
+    }[];
 };
 
 export type Order = z.infer<typeof OrderSchema>;
 export type Trade = z.infer<typeof TradeSchema>;
+export type Timeframe = z.infer<typeof TimeframeSchema>;
+export type Candle = z.infer<typeof CandleSchema>;
