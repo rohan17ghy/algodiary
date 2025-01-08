@@ -1,2 +1,2 @@
 export * from "./fyers-model";
-export * from "./socket/ltp-socket";
+export * from "./socket/fyers-data-socket";

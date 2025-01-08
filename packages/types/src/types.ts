@@ -1,26 +1,12 @@
-// export enum InstrumentType {
-//   Stocks,
-//   Options,
-//   Futures,
-// }
-
 import { z } from "zod";
 import {
     CandleSchema,
     OrderSchema,
+    SymbolSchema,
     TimeframeSchema,
     TradeSchema,
-} from "./zod/technicalSchema";
-
-export type Symbol = {
-    symbol: string;
-    name: string;
-    exchange?: string;
-    price?: number;
-    change?: number;
-    category?: string;
-    type?: "Stocks" | "Futures" | "Options";
-};
+} from "./zod/schema/technicalSchema";
+import { FyersResponseSchema } from "./zod/schema/fyersSchema";
 
 // export type Order = {
 //   id: string;
@@ -59,6 +45,18 @@ export type Account = {
     }[];
 };
 
+export type Margin = {
+    symbol: string;
+    qty: number;
+    side: 1 | -1;
+    type: 1 | 2 | 3 | 4;
+    productType: "CNC" | "INTRADAY" | "MARGIN" | "CO" | "BO";
+    limitPrice: number;
+    stopLoss: number;
+};
+
+export type FyersResponse = z.infer<typeof FyersResponseSchema>;
+export type Symbol = z.infer<typeof SymbolSchema>;
 export type Order = z.infer<typeof OrderSchema>;
 export type Trade = z.infer<typeof TradeSchema>;
 export type Timeframe = z.infer<typeof TimeframeSchema>;

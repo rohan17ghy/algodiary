@@ -1,0 +1,7 @@
+{
+  "name": "@algodiary/market-data",
+  "version": "1.0.0",
+  "description": "Module for fetching market data",
+  "main": "./src/index.ts",
+  "license": "MIT"
+}

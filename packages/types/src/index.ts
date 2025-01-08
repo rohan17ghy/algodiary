@@ -1,3 +1,3 @@
 export * from "./types";
-export * from "./zod/technicalSchema";
-export * from "./zod/fyersSchema";
+export * from "./zod/schema/technicalSchema";
+export * from "./zod/schema/fyersSchema";

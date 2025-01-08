@@ -1,4 +1,4 @@
-import { HistorySchema } from "@algodiary/types";
+import { FyersResponseHistorySchema } from "@algodiary/types";
 import { FyersModel } from "@algodiary/fyers";
 import { Candle, Symbol, Timeframe } from "@algodiary/types";
 import {
@@ -20,7 +20,7 @@ export async function getLastClosedCandle(
         `Fetching historic candles for ${symbol.symbol} from: ${lastCloseInterval} to: ${now}`
     );
 
-    const history = HistorySchema.parse(
+    const history = FyersResponseHistorySchema.parse(
         await fyersModel.getHistory({
             symbol: symbol.symbol,
             resolution: timeframe,

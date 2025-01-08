@@ -1,7 +1,8 @@
 import type { Symbol, Timeframe } from "@algodiary/types";
 import { MinuteEventEmitter } from "@algodiary/technicals";
 import { getLastClosedCandle } from "@algodiary/technicals";
-import { FyersModel, LTPSocket } from "@algodiary/fyers";
+import { FyersModel } from "@algodiary/fyers";
+import { LTPSocket } from "@algodiary/market-data";
 
 export async function reversePosition(
     currSym: Symbol,

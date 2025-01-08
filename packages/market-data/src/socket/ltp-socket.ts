@@ -1,5 +1,5 @@
 import { Symbol } from "@algodiary/types";
-import { FyersDataSocket } from "./fyers-data-socket";
+import { FyersDataSocket } from "@algodiary/fyers";
 
 export class LTPSocket {
     private static _instance: LTPSocket;

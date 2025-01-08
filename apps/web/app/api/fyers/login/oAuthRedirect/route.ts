@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
-import { FyersModel, LTPSocket } from "@algodiary/fyers";
+import { FyersModel } from "@algodiary/fyers";
+import { LTPSocket } from "@algodiary/market-data";
 import { AuthenticationFailedResponse, ValidResponse } from "@/lib/response";
 import { json } from "stream/consumers";
 

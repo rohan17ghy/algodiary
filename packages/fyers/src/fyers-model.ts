@@ -17,7 +17,10 @@ export class FyersModel {
             FyersModel._fyersModel.setRedirectUrl(
                 process.env.FYERS_REDIRECT_URL
             );
-            console.log(`AppId and redirectUrl set successfully`);
+            FyersModel._fyersModel.setAccessToken(
+                process.env.FYERS_ACCESS_TOKEN
+            );
+            console.log(`AppId, redirectUrl & access token set successfully`);
             console.log(
                 `ClientID: ${process.env.FYERS_CLIENT_ID}, REDIRECT_URL: ${process.env.FYERS_REDIRECT_URL}`
             );

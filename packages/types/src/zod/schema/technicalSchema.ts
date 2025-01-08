@@ -3,6 +3,18 @@ import { z } from "zod";
 export const Segment = z.enum(["NSE_EQ", "NSE_FNO"]);
 export const OrderType = z.enum(["Buy", "Sell"]);
 export const OrderStatus = z.enum(["Executed", "Pending", "Cancelled"]);
+
+export const SymbolSchema = z.object({
+    symbol: z.string(),
+    name: z.string(),
+    qty: z.number().optional(),
+    exchange: z.string().optional(),
+    price: z.number().optional(),
+    change: z.number().optional(),
+    category: z.string().optional(),
+    type: z.enum(["Stocks", "Futures", "Options"]).optional(),
+});
+
 export const TimeframeSchema = z.union([
     z.literal(1),
     z.literal(2),
