@@ -1,0 +1,7 @@
+{
+    "name": "@algodiary/order",
+    "version": "1.0.0",
+    "description": "Module for order placement and related operations",
+    "main": "./src/index.ts",
+    "license": "MIT"
+}

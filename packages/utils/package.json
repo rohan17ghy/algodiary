@@ -1,0 +1,7 @@
+{
+  "name": "@algodiary/utils",
+  "version": "1.0.0",
+  "description": "A package for helper functions and utility functions",
+  "main": "./src/index.ts",
+  "license": "MIT"
+}

@@ -22,6 +22,8 @@
         ".next/types/**/*.ts",
         "tailwind.config.js",
         "apps/**/*"
+        // "../../packages/utils/src/zod.ts",
+        // "../../packages/utils/src/response.ts"
     ],
     "exclude": ["node_modules"]
 }

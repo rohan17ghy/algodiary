@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { FyersModel } from "@algodiary/fyers";
 import { LTPSocket } from "@algodiary/market-data";
-import { AuthenticationFailedResponse, ValidResponse } from "@/lib/response";
+import { AuthenticationFailedResponse, ValidResponse } from "@algodiary/utils";
 import { json } from "stream/consumers";
 
 export async function GET(req: NextRequest) {

@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { reversePosition } from "@algodiary/technicals";
-import { ValidResponse } from "@/lib/response";
+import { ValidResponse } from "@algodiary/utils";
 
 export async function POST(req: NextRequest) {
     const body = await req.json();

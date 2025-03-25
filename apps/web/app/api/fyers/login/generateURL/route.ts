@@ -1,4 +1,4 @@
-import { InvalidResponse, ValidResponse } from "@/lib/response";
+import { InvalidResponse, ValidResponse } from "@algodiary/utils";
 import { FyersModel } from "@algodiary/fyers";
 import { NextRequest, NextResponse } from "next/server";
 
